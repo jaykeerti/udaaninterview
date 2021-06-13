@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table {
+            border: 1px solid #000;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var inp = document.getElementById("A1");
+            var ans;
+            var cell_with_formula;
+            document.querySelectorAll('.calc').forEach(item => {
+                item.addEventListener("keyup", function (event) {
+                    if (event.keyCode === 13) {
+                        console.log("TETS");
+                        item.value = ans;
+                    }
+                });
+                item.addEventListener('input', event => {
+                    var exp = item.value;
+                    var pattern = /SUM:/i;
+                    if (exp.match(pattern)) {
+                        var cell_val = exp.replace("SUM:", "");
+                        var vals = cell_val.split(",");
+                        console.log(vals);
+                        var num = 0;
+                        for (i = 0; i <= vals.length; i++) {
+                            console.log(vals[i]);
+                            var c_v = document.getElementById(vals[i]);
+                            console.log(c_v.value);
+                            num = parseInt(num) + parseInt(c_v.value);
+                            console.log(num);
+                            ans = num;
+                        }
+                    }
+                })
+            })
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <h2>HTML Table</h2>
+
+    <table>
+        <tr>
+            <td><input id="A1" value="" class="calc" /></td>
+            <td><input id="A2" value="" class="calc" /></td>
+            <td><input id="A3" value="" class="calc" /></td>
+        </tr>
+
+    </table>
+
+</body>
+
+</html>
